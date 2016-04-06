@@ -20,6 +20,18 @@ ExtractorLocalizableStrings will be installed in `~/Library/Application Support/
 
 If you want to uninstall plugin, remove ExtractorLocalizableStrings.xcplugin in `Plug-ins` directory.
 
+##Xcode version?
+
+From Xcode 5, Apple added a UUID-verification to all plugins to ensure the stability when Xcode gets updated. The value of DVTPlugInCompatibilityUUIDs in project plist should contains current UUID of Xcode version, or the plugin does not work. And from Xcode 6.3, you will be prompt to "Load third party bundle" if you are using a plugin. You should always select "Load bundles" to enable this plugin. If you happened to skip the bundle loading, you can use this to reset the prompt:
+
+`defaults delete com.apple.dt.Xcode DVTPlugInManagerNonApplePlugIns-Xcode-{your_xcode_version}`
+
+To get the UUID, execute in console:
+
+`defaults read /Applications/Xcode.app/Contents/Info DVTPlugInCompatibilityUUID`
+
+Pull request with the new DVTPlugInCompatibilityUUIDs is welcome
+
 ## Changelog
 > **1.0.0**
 > 
